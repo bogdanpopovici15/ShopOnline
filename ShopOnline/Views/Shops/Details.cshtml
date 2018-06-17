@@ -1,0 +1,92 @@
+﻿@model ShopOnline.Models.Shop
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="container">
+
+    <h3 style="text-align:center"> @Html.DisplayFor(model => model.Name)</h3><br/>
+    <table class="table table-bordered">
+        <tr>
+            <th style="width:80%">Name</th>
+        </tr>
+         @foreach (var item in Model.Items)
+    {
+        <tr>
+           
+            <td><a href="#" data-toggle="popover" data-trigger="hover" id="@item.Id">@item.Name</a></td>
+            <td>
+
+
+                <a href="javascript:void(0);" class="editItem" data-id="@item.Id">Edit</a> |
+                <a href="javascript:void(0);" class="deleteItem" data-id="@item.Id">Delete</a> |
+
+
+
+
+
+            </td>
+
+        </tr>
+    }
+
+    </table>
+
+
+
+
+</div>
+<p style="text-align:left">
+
+    @Html.ActionLink("Back to List of Shops", "Index")
+</p>
+<p style="text-align:center"> <a href="javascript:void(0);" class="createItem">Create New Item</a></p>
+
+
+<div id='myModal' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/main.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover({
+                title: setData,
+                html: true,
+                placement: 'right'
+
+            });
+            function setData(id) {
+                var set_data = '';
+                var element = $(this);
+                var id = element.attr("id");
+                $.ajax({
+                    url: "/Items/ItemInfo?id" + id,
+                    method: "post",
+                    async: false,
+                    data: { id: id },
+                    success: function (data) {
+                        set_data = data;
+                    }
+
+                });
+                return set_data;
+            }
+        });
+    </script>
+
+}

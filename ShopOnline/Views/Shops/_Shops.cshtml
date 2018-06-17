@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ShopOnline.Models.Shop>
+<p>
+    @using (Html.BeginForm())
+    {
+    <p>
+        Name Shop: @Html.TextBox("searching") <br />
+        <input type="submit" value="Search" />
+    </p>
+}
+
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Address
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Name, "Details", "Shops", new { item.Id }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adress)
+                   
+                </td>
+                <td>
+
+
+                    <a href="javascript:void(0);" class="edit" data-id="@item.Id">Edit</a> |
+                    <a href="javascript:void(0);" class="delete" data-id="@item.Id">Delete</a> |
+                   
+
+
+
+
+                </td>
+            </tr>
+        }
+
+
+
+    </table>
+    <a href="javascript:void(0);" class="create">Create New Shop</a>
+
+
+
+    <div id='myModal' class='modal'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id='myModalContent'></div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    @section scripts
+{
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/bootstrap.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+
+
+    }

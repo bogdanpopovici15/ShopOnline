@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "ItemInfo";
+}
+
+<div class="container">
+    
+    @foreach (var item in Model)
+    {
+        <p><label>Name : </label> @item.Name</p>
+        <p><label>Specification : </label> @item.Specification</p>
+        <p><label>Price : </label> @item.Price</p>
+
+    }
+</div>
+

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ShopOnline.Models.Shop>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div id="shops-container">
+    @Html.Partial("_Shops", Model)
+</div>
+
+
+
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/main.js"></script>
+
+
+
+
+}
+
+
